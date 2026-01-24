@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,8 +19,11 @@ Route::middleware('auth')->group(function () {
 });
 
 // Tasks Routes Resource
-Route::middleware('auth')->group(function () {
+/*Route::middleware('auth')->group(function () {
     Route::resource('tasks', App\Http\Controllers\TaskController::class);
-});
+});*/
+
+Route::middleware('auth')->get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+
 
 require __DIR__.'/auth.php';
