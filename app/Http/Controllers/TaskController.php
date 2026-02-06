@@ -44,7 +44,16 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        //validação dos dados
+        $validate = $request->validate([
+            'title'=>'required|string|max:255',
+            'description'=>'nullable|string',
+        ]);
+
         //
+        $task = auth()->user()->tasks()->create($validate);
+
+        return redirect()->back()->with('success','Tarefa criada com sucesso!');
     }
 
     /**
