@@ -25,5 +25,4 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
-
 require __DIR__.'/auth.php';

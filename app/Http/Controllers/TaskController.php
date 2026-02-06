@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ class TaskController extends Controller
         // Se não houver usuário autenticado, retorna todas as tasks como fallback
         if (! $user) {
             $tasks = Task::latest()->get();
+
             return view('tasks.index', compact('tasks'));
         }
 
