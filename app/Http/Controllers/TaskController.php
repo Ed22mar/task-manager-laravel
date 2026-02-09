@@ -14,17 +14,11 @@ class TaskController extends Controller
      */
     public function index(): View
     {
-        //
+        /**
+         * @var \App\Models\User $user
+         */
         $user = Auth::user();
 
-        // Se não houver usuário autenticado, retorna todas as tasks como fallback
-        if (! $user) {
-            $tasks = Task::latest()->get();
-
-            return view('tasks.index', compact('tasks'));
-        }
-
-        /** @var \App\Models\User $user */
         $tasks = $user->tasks()->latest()->get();
 
         return view('tasks.index', compact('tasks'));
