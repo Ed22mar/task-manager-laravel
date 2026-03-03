@@ -70,6 +70,9 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         //
+        if ($task->user_id !== Auth::id()) {
+        abort(403);
+        }
         return view('tasks.edit', compact('task'));
     }
 
@@ -79,6 +82,10 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         //
+        if ($task->user_id !== Auth::id()) {
+        abort(403);
+        }
+
         $validate = $request->validate([
             'title'=>'required|string|max:255',
             'description'=>'nullable|string',
