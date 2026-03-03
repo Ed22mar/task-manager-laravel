@@ -79,6 +79,15 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         //
+        $validate = $request->validate([
+            'title'=>'required|string|max:255',
+            'description'=>'nullable|string',
+        ]);
+
+        $task->update($validate);
+
+        return redirect()->back()->with('success','Tarefa atualizada com sucesso');
+
     }
 
     /**
